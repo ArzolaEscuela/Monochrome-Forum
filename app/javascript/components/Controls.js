@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from 'prop-types';
 import ChatButton from '../components/ChatButton';
 import { connect } from 'react-redux';
-import { GetMessages, SendMessage, ChangeText, ChangeName } from '../redux/AppActions'
+import { SendMessage, ChangeText, ChangeName } from '../redux/AppActions'
 
 class Controls extends React.Component 
 {
@@ -20,11 +20,6 @@ class Controls extends React.Component
     {
         const { name, text } = this.props;
         this.props.SendMessage(name, text);
-    }
-
-    RefreshMessages(e)
-    {
-        this.props.GetMessages();
     }
 
     render () 
@@ -77,4 +72,4 @@ function mapStateToProps(state)
      }; 
 }
 
-export default connect(mapStateToProps, {GetMessages: GetMessages, SendMessage: SendMessage, ChangeName: ChangeName, ChangeText: ChangeText })(Controls);
+export default connect(mapStateToProps, {SendMessage: SendMessage, ChangeName: ChangeName, ChangeText: ChangeText })(Controls);

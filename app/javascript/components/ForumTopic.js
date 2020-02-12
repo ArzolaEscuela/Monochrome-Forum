@@ -1,8 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types';
-import * as Const from '../constants';
-import ChatButton from '../components/ChatButton';
 
+import ReactHtmlParser from 'react-html-parser'; 
 
 function GenerateRandomTitle()
 {
@@ -30,9 +29,9 @@ class ForumTopic extends React.Component
                 <div className="row">
                     <div className="col-12 text-center forum-topic">
                     <h1>{title}</h1>
-                    <p>{description}</p>
+                    <p>{ReactHtmlParser(description)}</p>
                     <br/>
-                    <p>By: {author}</p>
+                    <p>{author != null ? "By: ": ""}{author}</p>
                     </div>
                 </div>
             </div>

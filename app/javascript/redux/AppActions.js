@@ -10,8 +10,6 @@ export const A_SENT_MESSAGE = "A_SENDM";
 export const A_CHANGE_NAME  = "A_CN";
 export const A_CHANGE_TEXT   = "A_CT";
 
-const API_URL = "http://167.71.154.9/messages";
-
 export function ChangeName(newName)
 {
     return function(dispatch) 
@@ -34,25 +32,6 @@ export function ChangeText(newText)
     } 
 }
 
-export function GetMessages()
-{
-    return function(dispatch) 
-    {
-        dispatch({
-            type: A_ASYNC_OPERATION_STARTED,
-        });
-        
-        axios.get(API_URL)
-        .then(response => 
-        {
-            dispatch ({
-                type: A_GET_MESSAGES,
-                allMessages: response.data
-            })
-        })
-        .catch((error) => {dispatch({type: A_ASYNC_OPERATION_ERROR, error: error })})
-    } 
-}
 
 export function SendMessage(name, text)
 {   

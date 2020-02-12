@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Message from './Message';
 
 import { connect } from 'react-redux';
-import { GetMessages } from '../redux/AppActions'
 
 function GetSize(obj) 
 {
@@ -37,7 +36,7 @@ class MessageArea extends React.Component
 {
     componentDidMount()
     {
-        this.props.GetMessages();
+        // this.props.GetMessages();
     }
 
     render () 
@@ -77,4 +76,4 @@ function mapStateToProps(state)
     }; 
 }
 
-export default connect(mapStateToProps, {GetMessages: GetMessages})(MessageArea);
+export default connect(mapStateToProps)(MessageArea);

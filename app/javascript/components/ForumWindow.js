@@ -11,10 +11,19 @@ class ForumWindow extends React.Component
 {
   render () 
   { 
+    const { selectedForum, allComments } = this.props
+
+    if (selectedForum == null)
+    {
+      return <ForumTopic author={null} title="Please Select A Forum" description='In order to be able to proceed, please <u><a href="/">go back</a></u> and select a valid forum to visit.'/>;
+    }
+
+    const { forumName, description, author } = selectedForum
+
     return (
         <Provider store={store}>
 
-        <ForumTopic/>
+        <ForumTopic author={author} title={forumName} description={description}/>
 
         <br/>
         
@@ -23,7 +32,7 @@ class ForumWindow extends React.Component
             <br/>
                 <div><Controls/></div>
             <br/>
-                <div><MessageArea/></div>
+                <div><MessageArea allMessages={allComments}/></div>
             </div>
         </div>
         </Provider>
