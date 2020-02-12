@@ -1,0 +1,197 @@
+@import "_variables";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+// General
+body
+{
+    background-color: rgb(245,241,232);
+    background-image: image-url($background-image);
+    background-repeat: repeat;
+    background-size: 30%;
+    font-family: 'Comfortaa', cursive;
+    font-size: 1.8em;
+}
+
+.forum-header
+{
+  //background-color: rgb(245,241,232);
+  //box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: white;
+  height: 100%;
+  width: 50%;
+  margin: 20px 0;
+}
+
+.forum-header, a:link {  color: black; text-decoration: none; }
+.forum-header,a:visited {  color: black; text-decoration: none; }
+.forum-header,a:hover {  color: black; text-decoration: none; }
+.forum-header,a:active {  color: black; text-decoration: none; }
+
+.home 
+{
+  background-color: white;
+}
+
+.chat-background
+{
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.message-top
+{
+  background-color: black;
+  width: 100%;
+  color: $font-white;
+}
+
+.message 
+{
+  border: 1px solid black; 
+  width: 100%;
+}
+
+// Text
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
+.text-center  { text-align: center; }
+.text-justify { text-align: justify; }
+
+// Tables
+.table-no-border>thead>tr>th, 
+.table-no-border>tbody>tr>th, 
+.table-no-border>tfoot>tr>th, 
+.table-no-border>thead>tr>td, 
+.table-no-border>tbody>tr>td, 
+.table-no-border>tfoot>tr>td {
+  border-top: none;
+  padding: 0px;
+}
+
+// Widths
+.full-width { width: 100%; }
+.width-90   { width:  90%; }
+.width-80   { width:  80%; }
+
+// Heights
+.full-height { height: 100%; }
+.height-90   { height: 90%; }
+.height-85   { height: 85%; }
+.height-80   { height: 80%; }
+.height-70   { height: 70%; }
+.height-65   { height: 65%; }
+
+// Margin 
+.no-margin          { margin: 0;           }
+.margin-10          { margin: 10px;        }
+.margin-15          { margin: 15px;        }
+.margin-20          { margin: 20px;        }
+.margin-top-10      { margin-top: 10px;    }
+.margin-top-15      { margin-top: 15px;    }
+.margin-top-20      { margin-top: 20px;    }
+.margin-bottom-10   { margin-bottom: 10px; }
+.margin-bottom-15   { margin-bottom: 15px; }
+.margin-bottom-20   { margin-bottom: 20px; }
+.margin-sides-5     { margin: 0  5px;      }
+.margin-sides-10    { margin: 0 10px;      }
+.margin-sides-15    { margin: 0 15px;      }
+.margin-sides-20    { margin: 0 20px;      }
+.margin-left-10     { margin-left: 10px;   }
+.margin-left-20     { margin-left: 20px;   }
+.margin-left-30     { margin-left: 30px;   }
+.margin-right-10    { margin-right: 10px;  }
+.margin-right-20    { margin-right: 20px;  }
+.margin-right-25    { margin-right: 25px;  }
+.margin-right-30    { margin-right: 30px;  }
+.n-margin-bottom-15 { margin-bottom: -15px;}
+.n-margin-bottom-25 { margin-bottom: -25px;}
+
+// Padding
+.no-padding { padding: 0;    }
+.padding-10 { padding: 10px; }
+.padding-15 { padding: 15px; }
+.padding-20 { padding: 20px; }
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+
+  display: flex;
+  align-items: center;
+}
+
+// Font Weights
+.font-weight-light      { font-weight: 100; }
+.font-weight-regular    { font-weight: 400; }
+.font-weight-black      { font-weight: 900; }
+
+// Font Size
+.font-size-2-5 { font-size: 2.5em; }
+.font-size-0-8 { font-size: 0.8em; }
+
+// Colors
+.white      { color: $font-white; }
+.black      { color: $font-black; }
+.red        { color: $red; }
+.orange     { color: $orange; }
+.blue       { color: $blue; }
+.dark-blue  { color: $dark-blue; }
+.alt-blue   { color: $gender-icon-blue; }
+.green      { color: $green; }
+.yellow     { color: $yellow; }
+.purple     { color: $purple; }
+
+.black-window       { background-color: $window-black; }
+.red-window         { background-color: $window-red; }
+.orange-window      { background-color: $window-orange; }
+.blue-window        { background-color: $window-blue; }
+.dark-blue-window   { background-color: $window-dark-blue; }
+.green-window       { background-color: $window-green; }
+.yellow-window      { background-color: $window-yellow; }
+.purple-window      { background-color: $window-purple; }
+.gray5-window      { background-color: $window-gray5; }
+
+
+.short-row
+{
+  display: flex;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+
+// Sweet Alert
+.swal-button--confirm
+{
+  background: $blue;
+}
+
+.swal-button--cancel, .swal-button--cancel:active, .swal-button--cancel:hover, .swal-button--cancel:focus  
+{
+  background: $red !important; // Required to override the style from a gem.
+  color: $font-white;
+}
+
+.fit-image
+{
+    width: 100%;
+    object-fit: contain;
+    height: 80px; /* only if you want fixed height */
+}
+
+.image-square
+{
+  width: 100px;
+  height: 100px;
+}
+
+
+.unselectable
+{
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}

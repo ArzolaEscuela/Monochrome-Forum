@@ -1,0 +1,51 @@
+// Sizes
+$window-title-padding: 4px 4px 2px 4px;
+$title-window-space: 5px;
+$border-radius: 10px;
+
+$top-width: 2vw;
+$bottom-width: 2vw;
+
+// Images
+$background-image: "website-background.jpg";
+
+// General Palette
+$red:           rgb(218, 85, 63);
+$orange:        rgb(241, 149, 43);
+$blue:          rgb(30, 143, 255);
+$dark-blue:     rgb(109, 146, 200);
+$green:         rgb(83, 165, 35);
+$yellow:        rgb(220, 181, 47);
+$purple:        rgb(132, 80, 160);
+$discord-purple:rgb(119, 136, 196);
+
+// Specific
+$gender-icon-blue: rgb(71, 128, 194);
+
+// Greyscale Palette
+$gray1: rgb(200, 205, 209);
+$gray2: rgb(124, 126, 126);
+$gray3: rgb(84, 86, 85);
+$gray4: rgb(65, 66, 66);
+$gray5: rgb(57, 57, 57);
+$black: rgb(43, 43, 43);
+
+// Font Palette
+$font-white: rgb(255, 251, 234);
+$font-black: rgb(79, 77, 76);
+
+// Scroll Palette
+$scroll:            rgb(200, 205, 209);
+$scroll-background:   rgba(200, 205, 209, 0.5);
+
+// Window Palette
+$window-opacity:    0.8;
+$window-black:      rgba($black,    $window-opacity);
+$window-gray5:      rgba($gray5,    $window-opacity);
+$window-red:        rgba($red,      $window-opacity);
+$window-blue:       rgba($blue,     $window-opacity);
+$window-dark-blue:  rgba($dark-blue,$window-opacity);
+$window-green:      rgba($green,    $window-opacity);
+$window-yellow:     rgba($yellow,   $window-opacity);
+$window-purple:     rgba($purple,   $window-opacity);
+$window-orange:     rgba($orange,   $window-opacity);

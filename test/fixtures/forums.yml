@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  forumName: 
+  description: 
+  author: 
+  lastEdit: 2020-02-11
+
+two:
+  forumName: 
+  description: 
+  author: 
+  lastEdit: 2020-02-11
