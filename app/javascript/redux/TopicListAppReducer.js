@@ -27,14 +27,16 @@ function rootReducer(currentState, action)
                 currentState.newTopicName = "";
                 currentState.newTopicDescription = "";  
                 currentState.newTopicAuthor = "";  
+                currentState.changes++; 
             break;
         case Actions.A_TOGGLE_EDIT_TOPIC:
                 currentState.topicEditState[action.indexToToggle] = !currentState.topicEditState[action.indexToToggle];
                 currentState.changes++; // For some reason, index manipulation doesn't count as dirtying the state, so we manually dirty it some other way
             break;
         case Actions.A_DELETE_TOPIC:
-                currentState.allTopics = currentState.allTopics.splice([action.indexInArray],1);  
-                currentState.topicEditState = currentState.topicEditState.splice([action.indexInArray],1); 
+            console.log(action.indexInArray)
+                currentState.allTopics.splice([action.indexInArray],1);  
+                currentState.topicEditState.splice([action.indexInArray],1); 
                 currentState.changes++; // For some reason, splice doesn't count as dirtying the state, so we manually dirty it some other way
             break;
         case Actions.A_CHANGE_NEW_TOPIC_NAME:
