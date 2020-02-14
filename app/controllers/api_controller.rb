@@ -26,12 +26,21 @@ class ApiController < ApplicationController
     def delete_forum
         idToDelete = request['params']['id']
     
-        puts '---------------------'
-        puts idToDelete
-
         Forum.Delete(idToDelete)
 
         return render json: { status: 'SUCCESS', message: 'Successfully deleted forum.', 
+            data: { } }, status: :ok
+    end
+
+    def save_forum_changes
+        id = request['params']['id']
+        newName = request['params']['newName']
+        newDesc = request['params']['newDesc']
+        newAuth = request['params']['newAuth']
+
+        Forum.Update(id, newName, newDesc, newAuth)
+
+        return render json: { status: 'SUCCESS', message: 'Forum updated successfully.', 
             data: { } }, status: :ok
     end
 end

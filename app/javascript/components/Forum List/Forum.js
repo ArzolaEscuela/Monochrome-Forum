@@ -5,7 +5,56 @@ import * as Helpers from '../../../../config/_helperMethods';
 import ChatButton from '../ChatButton';
 
 import { connect } from 'react-redux';
-import { DeleteMessage, ToggleEditTopic, EditTopic } from '../../redux/TopicListAppActions';
+import { DeleteMessage, ToggleEditTopic, SaveTopicChanges, ChangeExistingTopicName, ChangeExistingTopicDescription, ChangeExistingTopicAuthor } from '../../redux/TopicListAppActions';
+
+function DrawEditView(props)
+{
+  const { editState, editIndex, ChangeExistingTopicName, ChangeExistingTopicAuthor, ChangeExistingTopicDescription, ToggleEditTopic, SaveTopicChanges } = props
+  const { id, forumName, description, author, created_at, updated_at } = editState
+
+  return (
+    <React.Fragment>
+            <div className="row">
+                <div className="col-3 forum-info vertical-center">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-12">
+                        <strong>                        
+                        <input type="text" className="form-control" id={`forum-name-edit-${id}`} placeholder="New Forum Name" value={forumName} 
+                          onChange={event => ChangeExistingTopicName(editIndex, event.target.value)}/>
+                        </strong>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-12">
+                        <span className="font-size-0-8">Created By:</span>
+                        <input type="text" className="form-control" id={`author-edit-${id}`} placeholder="New Author" value={author} 
+                          onChange={event => ChangeExistingTopicAuthor(editIndex, event.target.value)}/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-5 forum-info vertical-center">
+                <input type="text" className="form-control" id={`description-edit-${id}`} placeholder="New Forum Description" value={description} 
+                  onChange={event => ChangeExistingTopicDescription(editIndex, event.target.value)}/>
+                </div>
+                <div className="col-2 forum-info vertical-center">
+                 {Helpers.GetSimpleDateString(new Date(created_at))}
+                </div>
+                <div className="col-2 forum-info">
+                    <div className="row vertical-center">
+                      <div className="col-7">
+                        <ChatButton text="Cancel" position={ChatButton.ButtonPosition.CENTER} action={() => ToggleEditTopic(editIndex)}/>
+                      </div>
+                      <div className="col-5">
+                        <ChatButton text="Save" position={ChatButton.ButtonPosition.CENTER} action={() => SaveTopicChanges(editState, editIndex)}/>
+                      </div>
+                    </div>
+                </div>
+            </div>   
+        </React.Fragment>
+  );
+}
 
 class Forum extends React.Component 
 {
@@ -21,12 +70,12 @@ class Forum extends React.Component
 
   render () 
   { 
-    const { info, editState, editIndex } = this.props
+    const { info, inEditView, editIndex } = this.props
     const { id, forumName, description, author, created_at, updated_at } = info
     
-    if (editState)
-    {
-      return <ChatButton text="Edit" position={ChatButton.ButtonPosition.CENTER} action={ () => {this.OnToggleEditButton(editIndex)} }/>;
+    if (inEditView)
+    {      
+      return <React.Fragment>{DrawEditView(this.props)}</React.Fragment>;
     }
 
     return (
@@ -79,4 +128,4 @@ function mapStateToProps(state)
    }; 
 }
 
-export default connect(mapStateToProps, {ToggleEditTopic, EditTopic, DeleteMessage} )(Forum);
+export default connect(mapStateToProps, {ToggleEditTopic, SaveTopicChanges, DeleteMessage, ChangeExistingTopicName, ChangeExistingTopicDescription, ChangeExistingTopicAuthor} )(Forum);

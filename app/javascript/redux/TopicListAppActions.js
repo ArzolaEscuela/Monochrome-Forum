@@ -7,12 +7,16 @@ export const A_ASYNC_OPERATION_CANCELLED = "A_AOC";
 export const A_ASYNC_OPERATION_ERROR = "A_AOE";
 
 export const A_CREATE_NEW_TOPIC = "A_CNT";
+export const A_SAVE_TOPIC_CHANGES = "A_STC";
 export const A_EDIT_TOPIC = "A_ET";
 export const A_TOGGLE_EDIT_TOPIC = "A_TET";
 export const A_DELETE_TOPIC = "A_DT";
 export const A_CHANGE_NEW_TOPIC_NAME  = "A_CNTN";
 export const A_CHANGE_NEW_TOPIC_DESCRIPTION   = "A_CNTD";
 export const A_CHANGE_NEW_TOPIC_AUTHOR   = "A_CNTA";
+export const A_CHANGE_EXISTING_TOPIC_NAME  = "A_CETN";
+export const A_CHANGE_EXISTING_TOPIC_DESCRIPTION   = "A_CETD";
+export const A_CHANGE_EXISTING_TOPIC_AUTHOR   = "A_CETA";
 export const A_GET_TOPICS   = "A_GAT";
 
 export function CreateNewTopic(topicName, topicDescription, topicAuthor)
@@ -100,9 +104,58 @@ export function ToggleEditTopic(indexToToggle)
     } 
 }
 
-export function EditTopic(idToEdit)
+export function SaveTopicChanges(topic, arrayIndex)
 {
+    return function(dispatch) 
+    {
+        dispatch({
+            type: A_ASYNC_OPERATION_STARTED
+        });
+        
+        swal
+        ({
+            title: "Save Changes?",
+            text: "You are about to modify an existing forum.\n\nDo you want to proceed?",
+            icon: "info",
+            cancelButtonColor: Const.CANCEL_BUTTON_COLOR,
+            buttons: ["No, Please Cancel", "Save Changes"],
+        })
+        .then((willAttemptToPurchase) => 
+        {
+            if (!willAttemptToPurchase) 
+            {
+                swal("No changes were saved.");
+                dispatch({
+                    type: A_ASYNC_OPERATION_CANCELLED,
+                });
+                return;
+            }
 
+            swal('Updating selected forum...',
+            {
+                icon: "info",
+                button: []
+            });
+
+            axios.post(Const.API_SAVE_FORUM_CHANGES, { params: { id: topic.id, newName: topic.forumName, newDesc: topic.description, newAuth: topic.author } })
+            .then(response => 
+            {
+                swal("Forum updated successfully.",
+                {
+                    icon: "success"
+                });
+
+                return dispatch({
+                    type: A_SAVE_TOPIC_CHANGES,
+                    arrayIndex: arrayIndex,
+                    newName: topic.forumName,
+                    newDesc: topic.description,
+                    newAuth: topic.author
+                });
+            })
+            .catch((error) => {dispatch({type: A_ASYNC_OPERATION_ERROR, error: error })})         
+        });
+    }
 }
 
 export function DeleteMessage(idToDelete, indexInArray)
@@ -116,7 +169,7 @@ export function DeleteMessage(idToDelete, indexInArray)
         swal
         ({
             title: "Are you sure you want to delete this forum?",
-            text: "You are about to delete a forum do you really want to proceed?",
+            text: "You are about to delete a forum.\n\nDo you really want to proceed?",
             icon: "info",
             cancelButtonColor: Const.CANCEL_BUTTON_COLOR,
             buttons: ["No, Please Cancel", "Delete Forum"],
@@ -167,6 +220,18 @@ export function ChangeTopicName(newName)
     } 
 }
 
+export function ChangeExistingTopicName(arrayIndex, newName)
+{
+    return function(dispatch) 
+    {
+        dispatch({
+            type: A_CHANGE_EXISTING_TOPIC_NAME,
+            newName: newName,
+            arrayIndex: arrayIndex
+        });
+    } 
+}
+
 export function ChangeTopicDescription(newDesc)
 {
     return function(dispatch) 
@@ -178,6 +243,18 @@ export function ChangeTopicDescription(newDesc)
     } 
 }
 
+export function ChangeExistingTopicDescription(arrayIndex, newDesc)
+{
+    return function(dispatch) 
+    {
+        dispatch({
+            type: A_CHANGE_EXISTING_TOPIC_DESCRIPTION,
+            newDesc: newDesc,
+            arrayIndex: arrayIndex
+        });
+    } 
+}
+
 export function ChangeTopicAuthor(newAuth)
 {
     return function(dispatch) 
@@ -185,6 +262,18 @@ export function ChangeTopicAuthor(newAuth)
         dispatch({
             type: A_CHANGE_NEW_TOPIC_AUTHOR,
             newTopicAuthor: newAuth
+        });
+    } 
+}
+
+export function ChangeExistingTopicAuthor(arrayIndex, newAuth)
+{
+    return function(dispatch) 
+    {
+        dispatch({
+            type: A_CHANGE_EXISTING_TOPIC_AUTHOR,
+            arrayIndex: arrayIndex,
+            newAuth: newAuth
         });
     } 
 }

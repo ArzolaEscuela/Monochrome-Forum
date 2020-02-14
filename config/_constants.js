@@ -7,6 +7,7 @@ export const API_URL                                     = HOME_URL + "api/";
 export const API_GET_ALL_FORUMS                          = API_URL + "get-all-forums";
 export const API_CREATE_NEW_FORUM                        = API_URL + "create-new-forum";
 export const API_DELETE_FORUM                            = API_URL + "delete-forum";
+export const API_SAVE_FORUM_CHANGES                      = API_URL + "save-forum-changes";
 
 export const avatars = 
 {

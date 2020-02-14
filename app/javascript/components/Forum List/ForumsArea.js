@@ -7,12 +7,12 @@ import Header from '../Header';
 import { connect } from 'react-redux';
 import { GetAllTopics } from '../../redux/TopicListAppActions';
 
-function DrawContents(allTopics, editState)
+function DrawContents(allTopics, editTopicStates, editState)
 {
     return allTopics.map((entry, id) => 
     {
         return <span key={id}>
-            <Forum info={entry} editState={editState[id]} editIndex={id}/>
+            <Forum info={entry} editState={editTopicStates[id]} inEditView={editState[id]} editIndex={id}/>
         </span>
     });
 }
@@ -26,7 +26,7 @@ class ForumsArea extends React.Component
 
     render () 
     { 
-        const { allTopics, topicEditState } = this.props;
+        const { allTopics, editTopicStates, topicEditState } = this.props;
 
         if (allTopics.length == 0)
         {
@@ -52,7 +52,7 @@ class ForumsArea extends React.Component
                             </div>
                         </div>   
                         
-                        {DrawContents(allTopics, topicEditState)}
+                        {DrawContents(allTopics, editTopicStates, topicEditState)}
                     </div>
                 </div>  
                 <br/>             
@@ -73,11 +73,12 @@ ForumsArea.propTypes =
 
 function mapStateToProps(state) 
 {
-   const { allTopics, topicEditState } = state
+   const { allTopics, topicEditState, editTopicStates } = state
 
     return {
         ...state,
         allTopics: allTopics,
+        editTopicStates: editTopicStates,
         topicEditState: topicEditState
     }; 
 }
