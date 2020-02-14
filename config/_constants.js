@@ -1,3 +1,11 @@
+// PAGES
+export const HOME_URL                                    = "/";
+export const  FORUM_URL                                   = HOME_URL + "forum";
+
+// API
+export const API_URL                                     = HOME_URL + "api/";
+export const API_GET_ALL_FORUMS                          = API_URL + "get-all-forums";
+
 export const avatars = 
 {
     1:  '/images/avatars/001.png',

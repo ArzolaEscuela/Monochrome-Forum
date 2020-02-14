@@ -41,7 +41,7 @@ class MessageArea extends React.Component
 
     render () 
     { 
-        const { allMessages} = this.props;
+        const { allMessages } = this.props;
 
         return (
             <div className="container">
@@ -76,4 +76,5 @@ function mapStateToProps(state)
     }; 
 }
 
-export default connect(mapStateToProps)(MessageArea);
+export default MessageArea
+// export default connect(mapStateToProps)(MessageArea);

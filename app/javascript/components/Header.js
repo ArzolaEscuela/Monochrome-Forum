@@ -3,21 +3,7 @@ import PropTypes from 'prop-types';
 
 import ReactHtmlParser from 'react-html-parser'; 
 
-function GenerateRandomTitle()
-{
-    return ["Member", "Member", "Member", "Member", "Member", "Member", "Member", "Trusted Member", "Trusted Member", "Moderator"][Math.floor(Math.random() * 10)];
-}
-
-function GenerateRandomStars()
-{
-    var filledStars = Math.floor(Math.random() * 5);
-    var stars = "";
-    for (var i = 0; i < filledStars; i++) { stars += "★"; }
-    for (var i = filledStars; i < 5; i++) { stars += "☆"; }
-    return stars;
-}
-
-class ForumTopic extends React.Component 
+class Header extends React.Component 
 {
   render () 
   { 
@@ -40,18 +26,18 @@ class ForumTopic extends React.Component
   }
 }
 
-ForumTopic.defaultProps = 
+Header.defaultProps = 
 {
     author: "Baggu",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
     title: "I AM ERROR"
 }
 
-ForumTopic.propTypes = 
+Header.propTypes = 
 {
     author: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string
 };
 
-export default ForumTopic
+export default Header

@@ -1,34 +1,40 @@
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
-import * as Actions from './AppActions';
+import * as Actions from './TopicListAppActions';
 import swal from 'sweetalert';
 
 const initialState = 
 {
     isLoading: true,
 
-    allMessages: [],
-    name: "",
-    text: ""
+    allTopics: [],
+    
+    newTopicName: "",
+    newTopicDescription: "",
+    newTopicAuthor: ""
 }
 
 function rootReducer(currentState, action) 
 {
     switch(action.type)
     {
-        case Actions.A_SENT_MESSAGE:
-            const { newMessage } = action
-            currentState.allMessages.push(newMessage);
-            currentState.text = "";
+        case Actions.A_CREATE_NEW_TOPIC:
+                currentState.allTopics.push(action.newTopic);  
             break;
-        case Actions.A_CHANGE_NAME:
-                currentState.name = action.name;  
+        case Actions.A_DELETE_TOPIC:
+                currentState.allTopics = currentState.allTopics.splice([action.indexInArray],1);  
             break;
-        case Actions.A_CHANGE_TEXT:
-                currentState.text = action.text;  
+        case Actions.A_CHANGE_NEW_TOPIC_NAME:
+                currentState.newTopicName = action.newTopicName;  
             break;
-        case Actions.A_GET_MESSAGES:
-            currentState.allMessages = action.allMessages;  
+        case Actions.A_CHANGE_NEW_TOPIC_DESCRIPTION:
+                currentState.newTopicDescription = action.newTopicDescription;  
+            break;
+        case Actions.A_CHANGE_NEW_TOPIC_AUTHOR:
+                currentState.newTopicAuthor = action.newTopicAuthor;  
+            break;
+        case Actions.A_GET_TOPICS:
+            currentState.allTopics = action.allTopics;  
             break;
         case Actions.A_ASYNC_OPERATION_CANCELLED:
             // We only need to clean the isLoading flag, which is done outside the switch.
@@ -54,7 +60,7 @@ function rootReducer(currentState, action)
     }
 }
 
-export default function AppReducer() {
+export default function TopicListAppReducer() {
     const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
     return store;
 }

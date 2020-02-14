@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from 'prop-types';
-import * as Const from '../constants';
+import * as Const from '../../../config/_constants';
 
 const ImagePosition = 
 {

@@ -1,7 +1,7 @@
 import React from "react"
 import PropTypes from 'prop-types';
-import * as Const from '../constants';
-import ChatButton from '../components/ChatButton';
+import * as Const from '../../../../config/_constants';
+import ChatButton from '../ChatButton';
 
 const ImagePosition = 
 {
@@ -28,7 +28,7 @@ class Message extends React.Component
 {
   render () 
   { 
-    const { creationDate, index, name, text, image } = this.props;
+    const { creationDate, index, name, text, image, onEdit, onDelete } = this.props;
 
     return (
         <React.Fragment >
@@ -69,10 +69,9 @@ class Message extends React.Component
                 </div>
             </div>
             
-
                 <div className="row">
-                    <ChatButton text="Edit"/>
-                    <ChatButton text="Delete"/>
+                    <ChatButton action={onEdit} text="Edit"/>
+                    <ChatButton action={onDelete} text="Delete"/>
                 </div>            
 
                 <br/>
@@ -92,7 +91,9 @@ Message.defaultProps =
     text: "I AM ERROR",
     image: 1,
     index: -1,
-    creationDate: "11-11-2011"
+    creationDate: "11-11-2011",
+    onEdit: () => { },
+    onDelete: () => { }
 }
 
 Message.propTypes = 

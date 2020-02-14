@@ -1,3 +1,30 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.chat-background
+{
+  font-family: 'Roboto', sans-serif;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+}
+
+.forum-header
+{
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+}
+
+.forum-info
+{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+.background
+{
+  background-color: white;
+}
