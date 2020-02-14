@@ -61,7 +61,7 @@ class CreateForumControls extends React.Component
                         </div>
 
                         <div className="row"> 
-                                <ChatButton text="Send New Message" action={ () => {this.OnCreateNewTopic(newTopicName, newTopicDescription, newTopicAuthor)} }/>
+                                <ChatButton text="Create New Forum" action={ () => {this.OnCreateNewTopic(newTopicName, newTopicDescription, newTopicAuthor)} }/>
                         </div>
 
                         <br/>

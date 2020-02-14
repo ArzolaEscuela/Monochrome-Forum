@@ -8,10 +8,13 @@ const initialState =
     isLoading: true,
 
     allTopics: [],
+    topicEditState: [],
     
     newTopicName: "",
     newTopicDescription: "",
-    newTopicAuthor: ""
+    newTopicAuthor: "",
+
+    changes: 0
 }
 
 function rootReducer(currentState, action) 
@@ -19,10 +22,20 @@ function rootReducer(currentState, action)
     switch(action.type)
     {
         case Actions.A_CREATE_NEW_TOPIC:
-                currentState.allTopics.push(action.newTopic);  
+                currentState.allTopics.push(action.newTopic); 
+                currentState.topicEditState.push(false); 
+                currentState.newTopicName = "";
+                currentState.newTopicDescription = "";  
+                currentState.newTopicAuthor = "";  
+            break;
+        case Actions.A_TOGGLE_EDIT_TOPIC:
+                currentState.topicEditState[action.indexToToggle] = !currentState.topicEditState[action.indexToToggle];
+                currentState.changes++; // For some reason, index manipulation doesn't count as dirtying the state, so we manually dirty it some other way
             break;
         case Actions.A_DELETE_TOPIC:
                 currentState.allTopics = currentState.allTopics.splice([action.indexInArray],1);  
+                currentState.topicEditState = currentState.topicEditState.splice([action.indexInArray],1); 
+                currentState.changes++; // For some reason, splice doesn't count as dirtying the state, so we manually dirty it some other way
             break;
         case Actions.A_CHANGE_NEW_TOPIC_NAME:
                 currentState.newTopicName = action.newTopicName;  
@@ -35,6 +48,7 @@ function rootReducer(currentState, action)
             break;
         case Actions.A_GET_TOPICS:
             currentState.allTopics = action.allTopics;  
+            currentState.topicEditState = action.allTopics.map(item => false);
             break;
         case Actions.A_ASYNC_OPERATION_CANCELLED:
             // We only need to clean the isLoading flag, which is done outside the switch.

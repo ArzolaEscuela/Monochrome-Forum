@@ -7,12 +7,12 @@ import Header from '../Header';
 import { connect } from 'react-redux';
 import { GetAllTopics } from '../../redux/TopicListAppActions';
 
-function DrawContents(allTopics)
+function DrawContents(allTopics, editState)
 {
     return allTopics.map((entry, id) => 
     {
         return <span key={id}>
-            <Forum info={entry}/>
+            <Forum info={entry} editState={editState[id]} editIndex={id}/>
         </span>
     });
 }
@@ -26,7 +26,7 @@ class ForumsArea extends React.Component
 
     render () 
     { 
-        const { allTopics } = this.props;
+        const { allTopics, topicEditState } = this.props;
 
         if (allTopics.length == 0)
         {
@@ -41,15 +41,18 @@ class ForumsArea extends React.Component
                             <div className="col-3 forum-header">
                                 Forum Name:            
                             </div>
-                            <div className="col-6 forum-header">
+                            <div className="col-5 forum-header">
                                 Description:
                             </div>
-                            <div className="col-3 forum-header">
+                            <div className="col-2 forum-header">
                                 Created At:
+                            </div>
+                            <div className="col-2 forum-header">
+                                Controls:
                             </div>
                         </div>   
                         
-                        {DrawContents(allTopics)}
+                        {DrawContents(allTopics, topicEditState)}
                     </div>
                 </div>  
                 <br/>             
@@ -70,11 +73,12 @@ ForumsArea.propTypes =
 
 function mapStateToProps(state) 
 {
-   const { allTopics } = state
+   const { allTopics, topicEditState } = state
 
     return {
         ...state,
-        allTopics: allTopics
+        allTopics: allTopics,
+        topicEditState: topicEditState
     }; 
 }
 

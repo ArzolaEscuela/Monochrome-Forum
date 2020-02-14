@@ -5,6 +5,8 @@ export const  FORUM_URL                                   = HOME_URL + "forum";
 // API
 export const API_URL                                     = HOME_URL + "api/";
 export const API_GET_ALL_FORUMS                          = API_URL + "get-all-forums";
+export const API_CREATE_NEW_FORUM                        = API_URL + "create-new-forum";
+export const API_DELETE_FORUM                            = API_URL + "delete-forum";
 
 export const avatars = 
 {
@@ -45,3 +47,6 @@ export const avatars =
     35: '/images/avatars/035.png',
     36: '/images/avatars/036.png',
 }
+
+// VISUAL CONSTANTS
+export const CANCEL_BUTTON_COLOR = "#DD6B55";

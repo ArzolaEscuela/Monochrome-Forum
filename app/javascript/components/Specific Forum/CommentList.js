@@ -3,7 +3,7 @@ import MessageArea from './MessageArea';
 import CreateMessageControls from './CreateMessageControls';
 import Header from '../Header';
 
-class ForumWindow extends React.Component 
+class CommentList extends React.Component 
 {
   render () 
   { 
@@ -36,14 +36,14 @@ class ForumWindow extends React.Component
   }
 }
 
-ForumWindow.defaultProps = 
+CommentList.defaultProps = 
 {
 
 }
 
-ForumWindow.propTypes = 
+CommentList.propTypes = 
 {
     
 };
 
-export default ForumWindow
+export default CommentList
