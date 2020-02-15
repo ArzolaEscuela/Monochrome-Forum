@@ -85,7 +85,7 @@ class Forum extends React.Component
                   <div className="container">
                     <div className="row">
                       <div className="col-12">
-                        <strong>{forumName}</strong>
+                        <a href={`forum?id=${id}`}>{forumName}</a>
                       </div>
                     </div>
                     <div className="row">

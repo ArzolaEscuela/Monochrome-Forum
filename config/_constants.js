@@ -1,6 +1,6 @@
 // PAGES
 export const HOME_URL                                    = "/";
-export const  FORUM_URL                                   = HOME_URL + "forum";
+export const  FORUM_URL                                  = HOME_URL + "forum";
 
 // API
 export const API_URL                                     = HOME_URL + "api/";
