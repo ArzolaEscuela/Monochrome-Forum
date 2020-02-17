@@ -1,7 +1,6 @@
 import React from "react"
 import PropTypes from 'prop-types';
 import ChatButton from '../ChatButton';
-import { connect } from 'react-redux';
 
 class CreateMessageControls extends React.Component 
 {

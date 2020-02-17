@@ -298,4 +298,3 @@ export function GetAllTopics()
         .catch((error) => {dispatch({type: A_ASYNC_OPERATION_ERROR, error: error })})
     }
 }
-

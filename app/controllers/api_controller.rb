@@ -43,4 +43,12 @@ class ApiController < ApplicationController
         return render json: { status: 'SUCCESS', message: 'Forum updated successfully.', 
             data: { } }, status: :ok
     end
+
+    def get_specific_forum
+        forumId = request.query_parameters['id']
+        forum = Forum.find(forumId)
+        comments = Comment.find_by forums_id: forumId
+        render json: { status: 'SUCCESS', message: "Fetched forum #{forumId}.", 
+          data: { selectedForum: forum, comments: comments } }, status: :ok 
+    end
 end
