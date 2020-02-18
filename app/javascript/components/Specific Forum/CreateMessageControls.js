@@ -25,11 +25,11 @@ const CreateMessageControls = ({addNewComment}) =>
 
                 <div className="row container-fluid justify-content-center align-center">            
                     <div className="form-group col-3 text-center">
-                        <label>Forum Name</label>
+                        <label>Author</label>
                         <input type="text" className="form-control" id="name" placeholder="John Doe" value={author} onChange={handleName}/>
                     </div>
                     <div className="form-group col-8 text-center">
-                        <label>Message</label>
+                        <label>Comment</label>
                         <input type="text" className="form-control" id="message" placeholder="Hello World. (Yea, I'm just THAT original.)" value={comment} onChange={handleComment}/>
                     </div>
                 </div>

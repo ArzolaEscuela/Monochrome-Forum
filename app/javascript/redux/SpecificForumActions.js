@@ -109,12 +109,11 @@ export function SaveCommentChanges(comment, arrayIndex)
                 {
                     icon: "success"
                 });
-
                 return dispatch({
                     type: Actions.A_SAVE_COMMENT_CHANGES,
                     arrayIndex: arrayIndex,
                     newComment: comment.comment,
-                    newAuth: comment.author
+                    newAuth: comment.auth
                 });
             })
             .catch((error) => {dispatch({type: Actions.A_ASYNC_OPERATION_ERROR, error: error })})         

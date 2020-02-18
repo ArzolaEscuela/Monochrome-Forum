@@ -34,8 +34,9 @@ function DrawEditView(editState, editIndex, ToggleEditComment, SaveCommentChange
   const [comment, setComment] = useState(contents)
   const [auth, setAuth] = useState(author)
   return (
+      <div>
         <div className="row">
-            <div className="col-3 forum-info vertical-center">
+            <div className="col-6 forum-info vertical-center">
                 <div className="container">
                 <div className="row">
                     <div className="col-12">
@@ -53,11 +54,11 @@ function DrawEditView(editState, editIndex, ToggleEditComment, SaveCommentChange
                     </div>
                 </div>
                 </div>
-            </div>=
-            <div className="col-2 forum-info vertical-center">
+            </div>
+            <div className="col-3 forum-info vertical-center">
                 {Helpers.GetSimpleDateString(new Date(created_at))}
             </div>
-            <div className="col-2 forum-info">
+            <div className="col-3 forum-info">
                 <div className="row vertical-center">
                     <div className="col-7">
                     <ChatButton text="Cancel" position={ChatButton.ButtonPosition.CENTER} action={() => ToggleEditComment(editIndex)}/>
@@ -67,7 +68,9 @@ function DrawEditView(editState, editIndex, ToggleEditComment, SaveCommentChange
                     </div>
                 </div>
             </div>
-        </div>   
+        </div>  
+        <br/> 
+      </div>
     );
 }
 const Message =({creationDate, index, name, text, image,ToggleEditComment, DeleteComment, SaveCommentChanges, editState, inEditView, editIndex,commentId})=> 
