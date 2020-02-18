@@ -5,22 +5,19 @@ import Header from '../Header';
 import axios from 'axios';
 import * as constants from "../../../../config/_constants";
 import {Provider} from 'react-redux';
-import TopicListAppReducer from '../../redux/TopicListAppReducer';
+import SpecificForumReducer from '../../redux/SpecificForumReducer';
 
-const store = TopicListAppReducer();
+const store = SpecificForumReducer();
 
-const CommentList = (props)=>
+const CommentList = ()=>
 {
   const [selectedForum, setSelectedForum] = useState({})
-  const [allComments, setAllComments] = useState([])
   useEffect(function(){
     function getForum(){
       axios.get(`${constants.API_GET_SPECIFIC_FORUM}?id=3`)
         .then(function(response)
         {
-          console.log(response.data.data)
             setSelectedForum(response.data.data.selectedForum);
-            setAllComments(response.data.data.comments);
         })
         .catch((error) => {console.log(error)})
     }
@@ -46,10 +43,7 @@ const CommentList = (props)=>
             <br/>
                 <div><CreateMessageControls/></div>
             <br/>
-                <div>
-                  {allComments ?
-                    <MessageArea allMessages={allComments}/> : ''}
-                </div>
+                <div><MessageArea id={3}/></div>
             </div>
         </div>
       </Provider>

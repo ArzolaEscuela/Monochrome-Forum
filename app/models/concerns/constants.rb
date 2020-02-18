@@ -13,5 +13,7 @@ module Constants
     API_DELETE_FORUM                            = API_URL + "delete-forum";
     API_SAVE_FORUM_CHANGES                      = API_URL + "save-forum-changes";
     API_GET_SPECIFIC_FORUM                      = API_URL + "get-specific-forum";
+    API_GET_FORUM_COMMENTS                      = API_URL + "get-forum-contents"
+    API_CREATE_NEW_COMMENT                      = API_URL + "create-new-comment";
 end
   

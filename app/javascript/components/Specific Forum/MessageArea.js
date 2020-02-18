@@ -1,8 +1,9 @@
-import React from "react"
+import React, {useEffect} from "react"
 import PropTypes from 'prop-types';
 import Message from './Message';
 
 import { connect } from 'react-redux';
+import { GetAllComments } from '../../redux/SpecificForumActions'
 
 function GetSize(obj) 
 {
@@ -13,68 +14,54 @@ function GetSize(obj)
     return size;
 };
 
-function DrawContents(allMessages)
+function DrawContents(allComments)
 {
     let left = false;
     let nameToImage = {};
-    return allMessages.map((entry, id) => 
+    return allComments.map((entry, id) => 
     {        
         left = !left;
 
-        const name = entry['name'];
-        const text = entry['text'];
+        const name = entry['author'];
+        const text = entry['contents'];
         if (!(name in nameToImage))
         {
             nameToImage[name] = 1 + (GetSize(nameToImage) % 36);
         }
         
-        return <span key={id}><Message image={nameToImage[name]} name={name} text={text} imagePosition={left ? Message.ImagePosition.LEFT: Message.ImagePosition.RIGHT}/></span>
+        return <span key={id}><Message 
+        image={nameToImage[name]} 
+        name={name} text={text} 
+        imagePosition={left ? Message.ImagePosition.LEFT: Message.ImagePosition.RIGHT}/>
+        </span>
     });
 }
 
-class MessageArea extends React.Component 
+const MessageArea =({GetAllComments, id, allComments, commentEditState, editCommentStates})=>
 {
-    componentDidMount()
-    {
-        // this.props.GetMessages();
-    }
+    useEffect(
+        ()=>{GetAllComments(id);}
+    ,[])
 
-    render () 
-    { 
-        const { allMessages } = this.props;
-
-        return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-11">
-                        {DrawContents(allMessages)}
-                    </div>
+    return (
+        <div className="container">
+            <div className="row justify-content-center">
+                <div className="col-11">
+                    {DrawContents(allComments)}
                 </div>
             </div>
-        );
-    }
+        </div>
+    );
 }
 
-MessageArea.defaultProps = 
-{
-    allMessages: [],
-    waiting: false
-}
-
-MessageArea.propTypes = 
-{
-    allMessages: PropTypes.any,
-    waiting: PropTypes.bool
-};
-
-function mapStateToProps(state) 
-{
-   const { allMessages } = state
+const mapStateToProps =(state)=> {
+    const { allComments, commentEditState, editCommentStates } = state
 
     return {
-        allMessages: allMessages
+        allComments: allComments,
+        commentEditState: commentEditState,
+        editCommentStates: editCommentStates
     }; 
 }
-
-export default MessageArea
-// export default connect(mapStateToProps)(MessageArea);
+// export default MessageArea
+export default connect(mapStateToProps, {GetAllComments})(MessageArea);

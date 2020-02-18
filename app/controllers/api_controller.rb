@@ -47,8 +47,26 @@ class ApiController < ApplicationController
     def get_specific_forum
         forumId = request.query_parameters['id']
         forum = Forum.find(forumId)
-        comments = Comment.find_by forums_id: forumId
         render json: { status: 'SUCCESS', message: "Fetched forum #{forumId}.", 
-          data: { selectedForum: forum, comments: comments } }, status: :ok 
+          data: { selectedForum: forum } }, status: :ok 
+    end
+
+    def get_forum_comments
+        forumId = request.query_parameters['id']
+        comments = Comment.where(:forums_id=> forumId)
+        render json: { status: 'SUCCESS', message: "Fetched comments from forum #{forumId}.", 
+          data: { allComments: comments } }, status: :ok 
+    end
+
+    def create_new_comment
+        forumId = request['params']['forumId']
+        author = request['params']['authorName']
+        comment = request['params']['comment']
+        puts forumId
+
+        newComment = Comment.Create(author, comment, forumId)
+
+        return render json: { status: 'SUCCESS', message: 'Created new forum successfully.', 
+            data: { newComment: newComment } }, status: :ok 
     end
 end

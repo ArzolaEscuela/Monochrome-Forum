@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-    def self.Create(title, desc, parentForumID)
+    def self.Create(auth, desc, parentForumID)
         newComment = create(
             author: auth,
             contents: desc,

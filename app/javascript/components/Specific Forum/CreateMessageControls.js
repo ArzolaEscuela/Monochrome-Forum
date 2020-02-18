@@ -1,15 +1,24 @@
-import React from "react"
+import React, {useState} from "react"
 import PropTypes from 'prop-types';
-import ChatButton from '../ChatButton';
+import {connect} from 'react-redux';
+import {addNewComment} from '../../redux/SpecificForumActions';
 
-class CreateMessageControls extends React.Component 
+const CreateMessageControls = ({addNewComment}) => 
 {
-
-    render () 
-    { 
-        let { name, text } = this.props;
+        let [ author, setAuthor ] = useState('');
+        let [comment, setComment] = useState('')
         
         // onChange={this.OnNameChanged.bind(this)}
+        const handleName = (e) => {
+            setAuthor(e.target.value)
+        }
+        const handleComment = (e) => {
+            setComment(e.target.value)
+        }
+
+        const postComment = () => {
+            addNewComment(comment, author)
+        }
         
         return (
             <div className="container">
@@ -17,21 +26,20 @@ class CreateMessageControls extends React.Component
                 <div className="row container-fluid justify-content-center align-center">            
                     <div className="form-group col-3 text-center">
                         <label>Forum Name</label>
-                        <input type="text" className="form-control" id="name" placeholder="John Doe" value={name}/>
+                        <input type="text" className="form-control" id="name" placeholder="John Doe" value={author} onChange={handleName}/>
                     </div>
                     <div className="form-group col-8 text-center">
                         <label>Message</label>
-                        <input type="text" className="form-control" id="message" placeholder="Hello World. (Yea, I'm just THAT original.)" value={text}/>
+                        <input type="text" className="form-control" id="message" placeholder="Hello World. (Yea, I'm just THAT original.)" value={comment} onChange={handleComment}/>
                     </div>
                 </div>
 
                 <div className="row"> 
-                        <ChatButton text="Create New Comment"/>
+                        <button className='chat-button center-block justify-content-center' onClick={postComment}>Create New Comment</button>
                 </div>
 
             </div>
         );
-    }
 }
 
 CreateMessageControls.defaultProps = 
@@ -46,16 +54,5 @@ CreateMessageControls.propTypes =
     text: PropTypes.string
 };
 
-function mapStateToProps(state) 
-{
-    const { allMessages, name, text } = state
- 
-     return {
-         allMessages: allMessages,
-         name: name,
-         text: text
-     }; 
-}
-
-export default CreateMessageControls
-// export default connect(mapStateToProps, {})(CreateMessageControls);
+// export default CreateMessageControls
+export default connect(null, {addNewComment})(CreateMessageControls);
