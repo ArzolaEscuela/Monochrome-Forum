@@ -76,4 +76,15 @@ class ApiController < ApplicationController
         return render json: { status: 'SUCCESS', message: 'Successfully deleted comment.', 
             data: { } }, status: :ok
     end
+
+    def save_comment_changes 
+        id = request['params']['id']
+        newComment = request['params']['newComment']
+        newAuth = request['params']['newAuth']
+
+        Comment.Update(id, newComment, newAuth)
+
+        return render json: { status: 'SUCCESS', message: 'Forum updated successfully.', 
+            data: { } }, status: :ok
+    end
 end

@@ -102,7 +102,7 @@ export function SaveCommentChanges(comment, arrayIndex)
                 button: []
             });
 
-            axios.post(Const.API_SAVE_FORUM_CHANGES, { params: { id: comment.id, newComment: comment.comment, newAuth: comment.author } })
+            axios.post(Const.API_SAVE_COMMENT_CHANGES, { params: { id: comment.id, newComment: comment.comment, newAuth: comment.auth } })
             .then(response => 
             {
                 swal("Comment updated successfully.",

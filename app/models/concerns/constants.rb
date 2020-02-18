@@ -15,7 +15,7 @@ module Constants
     API_GET_SPECIFIC_FORUM                      = API_URL + "get-specific-forum";
     API_GET_FORUM_COMMENTS                      = API_URL + "get-forum-contents";
     API_CREATE_NEW_COMMENT                      = API_URL + "create-new-comment";
-    API_DELETE_COMMENT                          = API_URL + "delete-comment"
-
+    API_DELETE_COMMENT                          = API_URL + "delete-comment";
+    API_SAVE_COMMENT_CHANGES                    = API_URL + "save-comment-changes";
 end
   

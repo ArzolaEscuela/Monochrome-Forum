@@ -60,6 +60,7 @@ const mapStateToProps =(state)=> {
     const { allComments, commentEditState, editCommentStates } = state
 
     return {
+        ...state,
         allComments: allComments,
         commentEditState: commentEditState,
         editCommentStates: editCommentStates

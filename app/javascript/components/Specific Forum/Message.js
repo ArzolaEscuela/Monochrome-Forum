@@ -1,6 +1,8 @@
 import React, {useState} from "react"
 import PropTypes from 'prop-types';
 import * as Const from '../../../../config/_constants';
+import * as Helpers from '../../../../config/_helperMethods';
+
 import ChatButton from '../ChatButton';
 import { ToggleEditComment, SaveCommentChanges, DeleteComment } from "../../redux/SpecificForumActions";
 import { connect } from "react-redux";
@@ -26,9 +28,8 @@ function GenerateRandomStars()
     return stars;
 }
 
-function DrawEditView(props)
+function DrawEditView(editState, editIndex, ToggleEditComment, SaveCommentChanges)
 {
-  const { editState, editIndex, ToggleEditComment, SaveCommentChanges } = props
   const { id, contents, author, created_at, updated_at } = editState
   const [comment, setComment] = useState(contents)
   const [auth, setAuth] = useState(author)
@@ -40,7 +41,7 @@ function DrawEditView(props)
                     <div className="col-12">
                     <strong>                        
                     <input type="text" className="form-control" id={`comment-edit-${id}`} placeholder="New Commennt " value={comment} 
-                        onChange={event => setComment(editIndex, event.target.value)}/>
+                        onChange={event => setComment(event.target.value)}/>
                     </strong>
                     </div>
                 </div>
@@ -48,7 +49,7 @@ function DrawEditView(props)
                     <div className="col-12">
                     <span className="font-size-0-8">Created By:</span>
                     <input type="text" className="form-control" id={`author-edit-${id}`} placeholder="New Author" value={auth} 
-                        onChange={event => setAuth(editIndex, event.target.value)}/>
+                        onChange={event => setAuth(event.target.value)}/>
                     </div>
                 </div>
                 </div>
@@ -62,7 +63,7 @@ function DrawEditView(props)
                     <ChatButton text="Cancel" position={ChatButton.ButtonPosition.CENTER} action={() => ToggleEditComment(editIndex)}/>
                     </div>
                     <div className="col-5">
-                    <ChatButton text="Save" position={ChatButton.ButtonPosition.CENTER} action={() => SaveCommentChanges(editState, editIndex)}/>
+                    <ChatButton text="Save" position={ChatButton.ButtonPosition.CENTER} action={() => SaveCommentChanges({comment, auth, id}, editIndex)}/>
                     </div>
                 </div>
             </div>
@@ -77,10 +78,11 @@ const Message =({creationDate, index, name, text, image,ToggleEditComment, Delet
     const onDeleteComment = () => {
         DeleteComment(commentId, editIndex)
     }
-    console.log(inEditView)
+    console.log(editState)
     if(inEditView){
         return DrawEditView(editState, editIndex, ToggleEditComment, SaveCommentChanges)
     }
+
     return (
         <div>
         <div  className="message">

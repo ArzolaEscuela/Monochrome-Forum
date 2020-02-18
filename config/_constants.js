@@ -11,7 +11,9 @@ export const API_SAVE_FORUM_CHANGES                      = API_URL + "save-forum
 export const API_GET_SPECIFIC_FORUM                      = API_URL + "get-specific-forum"; 
 export const API_GET_FORUM_COMMENTS                      = API_URL + "get-forum-contents";
 export const API_CREATE_NEW_COMMENT                      = API_URL + "create-new-comment";   
-export const API_DELETE_COMMENT                          = API_URL + "delete-comment"
+export const API_DELETE_COMMENT                          = API_URL + "delete-comment";
+export const API_SAVE_COMMENT_CHANGES                    = API_URL + "save-comment-changes";
+
 
 export const avatars = 
 {
