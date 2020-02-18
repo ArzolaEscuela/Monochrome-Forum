@@ -2,17 +2,21 @@
 export const HOME_URL                                    = "/";
 export const  FORUM_URL                                  = HOME_URL + "forum";
 
-// API
+// API (Forum List)
 export const API_URL                                     = HOME_URL + "api/";
 export const API_GET_ALL_FORUMS                          = API_URL + "get-all-forums";
 export const API_CREATE_NEW_FORUM                        = API_URL + "create-new-forum";
 export const API_DELETE_FORUM                            = API_URL + "delete-forum";
 export const API_SAVE_FORUM_CHANGES                      = API_URL + "save-forum-changes";
-export const API_GET_SPECIFIC_FORUM                      = API_URL + "get-specific-forum"; 
-export const API_GET_FORUM_COMMENTS                      = API_URL + "get-forum-contents";
-export const API_CREATE_NEW_COMMENT                      = API_URL + "create-new-comment";   
-export const API_DELETE_COMMENT                          = API_URL + "delete-comment";
-export const API_SAVE_COMMENT_CHANGES                    = API_URL + "save-comment-changes";
+export const API_SELECT_SPECIFIC_FORUM                   = API_URL + "select-specific-forum";
+
+// API (Specific Forum)
+export const API_FORUM_URL                               = HOME_URL + "api-forum/";
+export const API_GET_SPECIFIC_FORUM                      = API_FORUM_URL + "get-specific-forum"; 
+export const API_GET_FORUM_COMMENTS                      = API_FORUM_URL + "get-forum-contents";
+export const API_CREATE_NEW_COMMENT                      = API_FORUM_URL + "create-new-comment";   
+export const API_DELETE_COMMENT                          = API_FORUM_URL + "delete-comment";
+export const API_SAVE_COMMENT_CHANGES                    = API_FORUM_URL + "save-comment-changes";
 
 
 export const avatars = 

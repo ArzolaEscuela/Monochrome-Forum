@@ -23,6 +23,15 @@ class ApiController < ApplicationController
             data: { newForum: newEntry } }, status: :ok        
     end
 
+    def select_specific_forum
+        targetID = request['params']['id']
+
+        $selected_forum_id = targetID;
+
+        return render json: { status: 'SUCCESS', message: 'Selected forum to view successfully.', 
+            data: { } }, status: :ok 
+    end
+
     def delete_forum
         idToDelete = request['params']['id']
     

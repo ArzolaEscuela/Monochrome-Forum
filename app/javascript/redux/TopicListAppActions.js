@@ -19,6 +19,17 @@ export const A_CHANGE_EXISTING_TOPIC_DESCRIPTION   = "A_CETD";
 export const A_CHANGE_EXISTING_TOPIC_AUTHOR   = "A_CETA";
 export const A_GET_TOPICS   = "A_GAT";
 
+export function SelectTopicToView(topicID)
+{
+
+    return function(dispatch)
+    {
+        axios.post(Const.API_SELECT_SPECIFIC_FORUM, { params: { id: topicID } })
+        .then(() => { window.location.assign(Const.FORUM_URL) })
+        .catch((error) => {dispatch({type: A_ASYNC_OPERATION_ERROR, error: error })})
+    }
+}
+
 export function CreateNewTopic(topicName, topicDescription, topicAuthor)
 {
     return function(dispatch) 

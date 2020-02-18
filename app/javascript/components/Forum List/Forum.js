@@ -5,7 +5,7 @@ import * as Helpers from '../../../../config/_helperMethods';
 import ChatButton from '../ChatButton';
 
 import { connect } from 'react-redux';
-import { DeleteMessage, ToggleEditTopic, SaveTopicChanges, ChangeExistingTopicName, ChangeExistingTopicDescription, ChangeExistingTopicAuthor } from '../../redux/TopicListAppActions';
+import { DeleteMessage, SelectTopicToView, ToggleEditTopic, SaveTopicChanges, ChangeExistingTopicName, ChangeExistingTopicDescription, ChangeExistingTopicAuthor } from '../../redux/TopicListAppActions';
 
 function DrawEditView(props)
 {
@@ -68,6 +68,11 @@ class Forum extends React.Component
       this.props.DeleteMessage(id, indexInArray)
   }
 
+  OnSelectForum(id)
+  {
+    this.props.SelectTopicToView(id);
+  }
+
   render () 
   { 
     const { info, inEditView, editIndex } = this.props
@@ -85,7 +90,7 @@ class Forum extends React.Component
                   <div className="container">
                     <div className="row">
                       <div className="col-12">
-                        <a href={`forum?id=${id}`}>{forumName}</a>
+                        <a onClick={() => {this.OnSelectForum(id)}}><u>{forumName}</u></a>
                       </div>
                     </div>
                     <div className="row">
@@ -128,4 +133,4 @@ function mapStateToProps(state)
    }; 
 }
 
-export default connect(mapStateToProps, {ToggleEditTopic, SaveTopicChanges, DeleteMessage, ChangeExistingTopicName, ChangeExistingTopicDescription, ChangeExistingTopicAuthor} )(Forum);
+export default connect(mapStateToProps, {ToggleEditTopic, SelectTopicToView, SaveTopicChanges, DeleteMessage, ChangeExistingTopicName, ChangeExistingTopicDescription, ChangeExistingTopicAuthor} )(Forum);
