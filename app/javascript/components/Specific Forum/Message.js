@@ -1,7 +1,9 @@
-import React from "react"
+import React, {useState} from "react"
 import PropTypes from 'prop-types';
 import * as Const from '../../../../config/_constants';
 import ChatButton from '../ChatButton';
+import { ToggleEditComment, SaveCommentChanges, DeleteComment } from "../../redux/SpecificForumActions";
+import { connect } from "react-redux";
 
 const ImagePosition = 
 {
@@ -24,14 +26,63 @@ function GenerateRandomStars()
     return stars;
 }
 
-class Message extends React.Component 
+function DrawEditView(props)
 {
-  render () 
-  { 
-    const { creationDate, index, name, text, image, onEdit, onDelete } = this.props;
-
+  const { editState, editIndex, ToggleEditComment, SaveCommentChanges } = props
+  const { id, contents, author, created_at, updated_at } = editState
+  const [comment, setComment] = useState(contents)
+  const [auth, setAuth] = useState(author)
+  return (
+        <div className="row">
+            <div className="col-3 forum-info vertical-center">
+                <div className="container">
+                <div className="row">
+                    <div className="col-12">
+                    <strong>                        
+                    <input type="text" className="form-control" id={`comment-edit-${id}`} placeholder="New Commennt " value={comment} 
+                        onChange={event => setComment(editIndex, event.target.value)}/>
+                    </strong>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12">
+                    <span className="font-size-0-8">Created By:</span>
+                    <input type="text" className="form-control" id={`author-edit-${id}`} placeholder="New Author" value={auth} 
+                        onChange={event => setAuth(editIndex, event.target.value)}/>
+                    </div>
+                </div>
+                </div>
+            </div>=
+            <div className="col-2 forum-info vertical-center">
+                {Helpers.GetSimpleDateString(new Date(created_at))}
+            </div>
+            <div className="col-2 forum-info">
+                <div className="row vertical-center">
+                    <div className="col-7">
+                    <ChatButton text="Cancel" position={ChatButton.ButtonPosition.CENTER} action={() => ToggleEditComment(editIndex)}/>
+                    </div>
+                    <div className="col-5">
+                    <ChatButton text="Save" position={ChatButton.ButtonPosition.CENTER} action={() => SaveCommentChanges(editState, editIndex)}/>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    );
+}
+const Message =({creationDate, index, name, text, image,ToggleEditComment, DeleteComment, SaveCommentChanges, editState, inEditView, editIndex,commentId})=> 
+{
+    const onToggleEditComment = () => {
+        ToggleEditComment(editIndex)
+    }
+    const onDeleteComment = () => {
+        DeleteComment(commentId, editIndex)
+    }
+    console.log(inEditView)
+    if(inEditView){
+        return DrawEditView(editState, editIndex, ToggleEditComment, SaveCommentChanges)
+    }
     return (
-        <React.Fragment >
+        <div>
         <div  className="message">
 
             <div className="row">
@@ -70,8 +121,8 @@ class Message extends React.Component
             </div>
             
                 <div className="row">
-                    <ChatButton action={onEdit} text="Edit"/>
-                    <ChatButton action={onDelete} text="Delete"/>
+                    <ChatButton action={onToggleEditComment} text="Edit"/>
+                    <ChatButton action={onDeleteComment} text="Delete"/>
                 </div>            
 
                 <br/>
@@ -79,9 +130,8 @@ class Message extends React.Component
 
             <br/>
 
-        </React.Fragment>
+        </div>
     );
-  }
 }
 
 Message.defaultProps = 
@@ -107,4 +157,4 @@ Message.propTypes =
 };
 
 Message.ImagePosition = ImagePosition
-export default Message
+export default connect(null, {ToggleEditComment, SaveCommentChanges, DeleteComment})(Message)

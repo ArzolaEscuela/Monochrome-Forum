@@ -14,7 +14,7 @@ function GetSize(obj)
     return size;
 };
 
-function DrawContents(allComments)
+function DrawContents(allComments, commentEditState, editCommentStates)
 {
     let left = false;
     let nameToImage = {};
@@ -24,6 +24,7 @@ function DrawContents(allComments)
 
         const name = entry['author'];
         const text = entry['contents'];
+        const commentId = entry['id'];
         if (!(name in nameToImage))
         {
             nameToImage[name] = 1 + (GetSize(nameToImage) % 36);
@@ -32,6 +33,7 @@ function DrawContents(allComments)
         return <span key={id}><Message 
         image={nameToImage[name]} 
         name={name} text={text} 
+        editState={editCommentStates[id]} inEditView={commentEditState[id]} editIndex={id} commentId={commentId} 
         imagePosition={left ? Message.ImagePosition.LEFT: Message.ImagePosition.RIGHT}/>
         </span>
     });
@@ -47,7 +49,7 @@ const MessageArea =({GetAllComments, id, allComments, commentEditState, editComm
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-11">
-                    {DrawContents(allComments)}
+                    {DrawContents(allComments, commentEditState, editCommentStates)}
                 </div>
             </div>
         </div>

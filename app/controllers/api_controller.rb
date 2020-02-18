@@ -62,11 +62,18 @@ class ApiController < ApplicationController
         forumId = request['params']['forumId']
         author = request['params']['authorName']
         comment = request['params']['comment']
-        puts forumId
 
         newComment = Comment.Create(author, comment, forumId)
 
-        return render json: { status: 'SUCCESS', message: 'Created new forum successfully.', 
+        return render json: { status: 'SUCCESS', message: 'Created new comment successfully.', 
             data: { newComment: newComment } }, status: :ok 
+    end
+
+    def delete_comment
+        commentId = request['params']['id']
+        Comment.Delete(commentId)
+
+        return render json: { status: 'SUCCESS', message: 'Successfully deleted comment.', 
+            data: { } }, status: :ok
     end
 end

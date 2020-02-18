@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post API_DELETE_FORUM,            to: "api#delete_forum"
   post API_SAVE_FORUM_CHANGES,      to: "api#save_forum_changes"
   post API_CREATE_NEW_COMMENT,      to: "api#create_new_comment"
+  post API_DELETE_COMMENT,          to: "api#delete_comment"
+
   
   get '*path' => redirect('/') # When in doubt, redirect to root
 end

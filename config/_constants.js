@@ -9,8 +9,9 @@ export const API_CREATE_NEW_FORUM                        = API_URL + "create-new
 export const API_DELETE_FORUM                            = API_URL + "delete-forum";
 export const API_SAVE_FORUM_CHANGES                      = API_URL + "save-forum-changes";
 export const API_GET_SPECIFIC_FORUM                      = API_URL + "get-specific-forum"; 
-export const API_GET_FORUM_COMMENTS                      = API_URL + "get-forum-contents"
+export const API_GET_FORUM_COMMENTS                      = API_URL + "get-forum-contents";
 export const API_CREATE_NEW_COMMENT                      = API_URL + "create-new-comment";   
+export const API_DELETE_COMMENT                          = API_URL + "delete-comment"
 
 export const avatars = 
 {

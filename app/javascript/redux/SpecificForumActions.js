@@ -122,7 +122,7 @@ export function SaveCommentChanges(comment, arrayIndex)
     }
 }
 
-export function DeleteMessage(idToDelete, indexInArray)
+export function DeleteComment(idToDelete, indexInArray)
 {
     return function(dispatch) 
     {
@@ -154,8 +154,8 @@ export function DeleteMessage(idToDelete, indexInArray)
                 icon: "info",
                 button: []
             });
-
-            axios.post(Const.API_DELETE_FORUM, { params: { id: idToDelete } })
+            console.log(idToDelete)
+            axios.post(Const.API_DELETE_COMMENT, { params: { id: idToDelete } })
             .then(response => 
             {
                 swal("Comment deleted successfully.",

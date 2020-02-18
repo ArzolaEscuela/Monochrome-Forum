@@ -53,7 +53,7 @@ function rootReducer(currentState, action)
         case Actions.A_GET_COMMENTS:
             currentState.allComments = action.allComments; 
             currentState.editCommentStates = _.cloneDeep(action.allComments); // Clone array by value
-            currentState.commentEditState = action.allComments.map(item => false);
+            currentState.commentEditState = action.allComments.map(() => false);
             break;
         case Actions.A_ASYNC_OPERATION_CANCELLED:
             // We only need to clean the isLoading flag, which is done outside the switch.
