@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addNewComment} from '../../redux/SpecificForumActions';
 
-const CreateMessageControls = ({addNewComment}) => 
+const CreateMessageControls = ({addNewComment, id}) => 
 {
+
         let [ author, setAuthor ] = useState('');
         let [comment, setComment] = useState('')
         
-        // onChange={this.OnNameChanged.bind(this)}
         const handleName = (e) => {
             setAuthor(e.target.value)
         }
@@ -17,7 +17,7 @@ const CreateMessageControls = ({addNewComment}) =>
         }
 
         const postComment = () => {
-            addNewComment(comment, author)
+            addNewComment(comment, author, id)
         }
         
         return (
@@ -54,5 +54,4 @@ CreateMessageControls.propTypes =
     text: PropTypes.string
 };
 
-// export default CreateMessageControls
 export default connect(null, {addNewComment})(CreateMessageControls);

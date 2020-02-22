@@ -31,8 +31,7 @@ function rootReducer(currentState, action)
                 currentState.changes++; // For some reason, index manipulation doesn't count as dirtying the state, so we manually dirty it some other way
             break;
         case Actions.A_SAVE_COMMENT_CHANGES:
-                console.log(action)
-                currentState.allComments[action.arrayIndex]['comment'] = action.newComment;  
+                currentState.allComments[action.arrayIndex]['contents'] = action.newComment;  
                 currentState.allComments[action.arrayIndex]['author'] = action.newAuth;
                 currentState.commentEditState[action.arrayIndex] = false;
                 currentState.changes++; // For some reason, index manipulation doesn't count as dirtying the state, so we manually dirty it some other way

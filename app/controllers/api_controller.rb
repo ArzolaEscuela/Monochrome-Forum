@@ -91,7 +91,7 @@ class ApiController < ApplicationController
         newComment = request['params']['newComment']
         newAuth = request['params']['newAuth']
 
-        Comment.Update(id, newComment, newAuth)
+        Comment.Update(id, newAuth, newComment)
 
         return render json: { status: 'SUCCESS', message: 'Forum updated successfully.', 
             data: { } }, status: :ok

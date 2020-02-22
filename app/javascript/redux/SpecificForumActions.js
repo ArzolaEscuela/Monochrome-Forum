@@ -3,7 +3,7 @@ import swal from 'sweetalert';
 import * as Actions from './ActionConstants'
 import * as Const from "../../../config/_constants";
 
-export const addNewComment = (comment, authorName, id) => {
+export const addNewComment = (comment, authorName, forumId) => {
     return function(dispatch)
     {
         dispatch({type: Actions.A_ASYNC_OPERATION_STARTED})
@@ -34,7 +34,7 @@ export const addNewComment = (comment, authorName, id) => {
             return;
         }
 
-        axios.post( Const.API_CREATE_NEW_COMMENT, { params: { forumId: 3,authorName: authorName, comment: comment } })
+        axios.post( Const.API_CREATE_NEW_COMMENT, { params: { forumId: forumId, authorName: authorName, comment: comment } })
             .then(response => 
             {
                 const { newComment } = response.data.data

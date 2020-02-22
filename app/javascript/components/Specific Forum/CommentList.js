@@ -9,12 +9,12 @@ import SpecificForumReducer from '../../redux/SpecificForumReducer';
 
 const store = SpecificForumReducer();
 
-const CommentList = ()=>
+const CommentList = ({selectedForumID})=>
 {
   const [selectedForum, setSelectedForum] = useState({})
   useEffect(function(){
     function getForum(){
-      axios.get(`${constants.API_GET_SPECIFIC_FORUM}?id=3`)
+      axios.get(`${constants.API_GET_SPECIFIC_FORUM}?id=${selectedForumID}`)
         .then(function(response)
         {
             setSelectedForum(response.data.data.selectedForum);
@@ -41,9 +41,9 @@ const CommentList = ()=>
         <div className="container">
             <div className="chat-background">
             <br/>
-                <div><CreateMessageControls/></div>
+                <div><CreateMessageControls id={selectedForumID}/></div>
             <br/>
-                <div><MessageArea id={3}/></div>
+                <div><MessageArea id={selectedForumID}/></div>
             </div>
         </div>
       </Provider>
